@@ -14,6 +14,27 @@ namespace XF.OnPlatform.Views
         public AboutPage()
         {
             InitializeComponent();
+            Device.OnPlatform(
+                Android: () => LearnMoreButton.BackgroundColor = Color.Green,
+                iOS: () => LearnMoreButton.BackgroundColor = Color.Orange,
+                WinPhone: () => LearnMoreButton.BackgroundColor = Color.Purple,
+                Default: () => LearnMoreButton.BackgroundColor = Color.Black);
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.Android:
+                    LearnMoreButtonSwitch.BackgroundColor = Color.Green;
+                    break;
+                case Device.iOS:
+                    LearnMoreButtonSwitch.BackgroundColor = Color.Orange;
+                    break;
+                case Device.UWP:
+                    LearnMoreButtonSwitch.BackgroundColor = Color.Purple;
+                    break;
+                default:
+                    LearnMoreButtonSwitch.BackgroundColor = Color.Black;
+                    break;
+            }
         }
     }
 }
